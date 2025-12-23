@@ -1,0 +1,30 @@
+# Отчеты
+allure-results/
+allure-report/
+
+# 2. Python кэш и виртуальные окружения:
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+env/
+venv/
+.venv/
+
+# 3. VS Code/PyCharm:
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 4. Операционные системы:
+.DS_Store           # Файлы macOS
+Thumbs.db           # Файлы Windows
+desktop.ini         # Файлы Windows
+
+# 5. Docker (.dockerignore, пока-что без него)
+
+# 6. Логи и временные файлы:
+*.log
+*.tmp
+*.temp

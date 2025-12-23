@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  tests:
+    build: .
+    container_name: saucedemo-tests
+    volumes:
+      # Монтируем папки для результатов тестов
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
+      # Для разработки можно смонтировать код
+      - ./pages:/app/pages
+      - ./tests:/app/tests
+      - ./utils:/app/utils
+      - ./conftest.py:/app/conftest.py
+    command: >
+      sh -c "echo 'Запуск тестов...' &&
+             pytest tests/ -n auto --alluredir=./allure-results --tb=short &&
+             echo 'Генерация отчета Allure...' &&
+             allure generate ./allure-results -o ./allure-report --clean &&
+             echo 'Тесты завершены! Отчет в папке allure-report'"
+    # Очищаем контейнер после выполнения
+    restart: "no"
