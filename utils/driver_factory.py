@@ -4,7 +4,9 @@ from selenium.webdriver.chrome.options import Options
 
 class DriverFactory:
     @staticmethod
-    def get_driver(browser="chrome", headless=True):
+    def get_driver(
+        browser="chrome", headless=True
+    ):  # False - Локально True - для Docker
         if browser.lower() == "chrome":
             options = Options()
             if headless:
@@ -16,9 +18,7 @@ class DriverFactory:
             # Только FATAL ошибки
             options.add_argument("--log-level=3")
             # Отключаем видеокарту, только процессор
-            options.add_argument(
-                "--disable-gpu"
-            )
+            options.add_argument("--disable-gpu")
             # Размер окна браузера
             options.add_argument("--window-size=1920,1080")
             # Поиск драйвера

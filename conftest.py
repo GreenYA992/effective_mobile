@@ -7,7 +7,9 @@ from utils.driver_factory import DriverFactory
 
 @pytest.fixture(scope="function")
 def driver():
-    driver = DriverFactory.get_driver(headless=True)
+    driver = DriverFactory.get_driver(
+        headless=True
+    )  # False - Локально True - для Docker
     yield driver
     driver.quit()
 
