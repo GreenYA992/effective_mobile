@@ -39,7 +39,6 @@ RUN apt-get update && apt-get install -y openjdk-21-jre-headless wget unzip \
 
 # Проверяем установку
 RUN allure --version
-
 RUN google-chrome-stable --version
 
 COPY requirements.txt .
@@ -48,4 +47,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Запускаем тесты в headless режиме
-CMD ["pytest", "tests/", "--alluredir=./allure-results"]
+# CMD ["sh", "-c", "pytest tests/ --alluredir=/app/allure-results && allure generate /app/allure-results --clean -o /app/allure-report"]
+CMD ["sh", "-c", "pytest tests/ --alluredir=/tmp/allure-results && allure generate /tmp/allure-results --clean -o /app/allure-report"]
