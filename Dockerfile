@@ -46,6 +46,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+ENV DOCKER_MODE=true
+
 # Запускаем тесты в headless режиме
-# CMD ["sh", "-c", "pytest tests/ --alluredir=/app/allure-results && allure generate /app/allure-results --clean -o /app/allure-report"]
-CMD ["sh", "-c", "pytest tests/ --alluredir=/tmp/allure-results && allure generate /tmp/allure-results --clean -o /app/allure-report"]
+CMD ["sh", "-c", "echo 'Запуск Docker-тестов с маркером docker...' && \
+     pytest tests/ -m docker --alluredir=/tmp/allure-results && \
+     allure generate /tmp/allure-results --clean -o /app/allure-report"]

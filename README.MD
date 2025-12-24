@@ -24,14 +24,13 @@
 pip install -r requirements.txt
 ```
 - ### Запуск тестов
- * ДЛЯ ЖИВЫХ ТЕСТОВ
- * в utils/driver_factory: get_driver(browser="chrome", headless=True),
- * в conftest: driver()/driver = DriverFactory.get_driver(headless=True)
- * изменить True на False
-
-- ### Полный цикл (тесты + отчет)
+- ##### Только локальные тесты
 ```bash
-pytest tests/ --alluredir=./allure-results && allure generate ./allure-results --clean -o ./allure-report
+pytest tests/ -m local
+```
+- ##### Полный цикл (тесты + отчет (На ПК не установлен Allure, не проверял))
+```bash
+pytest tests/ -m local --alluredir=./allure-results && allure generate ./allure-results --clean -o ./allure-report
 ```
 
 # Запуск в Docker
@@ -41,11 +40,11 @@ docker build -t effective_mobile-tests .
 ```
 - ### Запуск тестов
 ```bash
-docker run --rm effective_mobile-tests
+docker run --rm -e DOCKER_MODE=true effective_mobile-tests
 ```
 - ### Запуск тестов с отчетами
 ```bash
-docker run --rm -v "./allure-report:/app/allure-report" effective_mobile-tests
+docker run --rm -v "./allure-report:/app/allure-report" -e DOCKER_MODE=true effective_mobile-tests
 ```
 
 # Запуск через docker-compose

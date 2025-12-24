@@ -6,6 +6,7 @@ from pages.login_page import LoginPage
 
 @allure.feature("Авторизация")
 @allure.story("Успешная авторизация")
+@pytest.mark.local
 def test_successful_login(login_page):
     """Тест успешной авторизации с валидными данными"""
     with allure.step("Вводим логин и пароль пользователя"):
@@ -22,6 +23,7 @@ def test_successful_login(login_page):
 
 @allure.feature("Авторизация")
 @allure.story("Неуспешная авторизация с неверным паролем")
+@pytest.mark.local
 def test_login_with_wrong_password(login_page):
     """Тест авторизации с неверным паролем"""
     with allure.step("Вводим логин пользователя и !!! некорректный !!! пароль"):
@@ -40,6 +42,7 @@ def test_login_with_wrong_password(login_page):
 
 @allure.feature("Авторизация")
 @allure.story("Авторизация заблокированного пользователя")
+@pytest.mark.local
 def test_locked_out_user(login_page):
     """Тест авторизации заблокированного пользователя"""
     with allure.step("Вводим логин и пароль !!! заблокированного !!! пользователя"):
@@ -58,6 +61,7 @@ def test_locked_out_user(login_page):
 
 @allure.feature("Авторизация")
 @allure.story("Авторизация с пустыми полями")
+@pytest.mark.local
 def test_login_with_empty_fields(login_page):
     """Тест авторизации с пустыми полями"""
     with allure.step("Нажимаем кнопку Login без заполнения полей"):
@@ -76,6 +80,7 @@ def test_login_with_empty_fields(login_page):
 
 @allure.feature("Авторизация")
 @allure.story("Авторизация пользователя с задержками")
+@pytest.mark.local
 def test_performance_glitch_user(login_page):
     """Тест авторизации пользователя performance_glitch_user"""
     with allure.step("Вводим логин и пароль пользователя performance_glitch_user"):

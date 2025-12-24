@@ -12,9 +12,11 @@ services:
       - ./tests:/app/tests
       - ./utils:/app/utils
       - ./conftest.py:/app/conftest.py
+    environment:
+      - DOCKER_MODE=true
     command: >
       sh -c "echo 'Запуск тестов...' &&
-             pytest tests/ -n auto --alluredir=/tmp/allure-results --tb=short &&
+             pytest tests/ -m docker -n auto --alluredir=/tmp/allure-results --tb=short &&
              echo 'Генерация отчета Allure...' &&
              allure generate /tmp/allure-results -o ./allure-report --clean &&
              echo 'Тесты завершены! Отчет в папке allure-report'"
